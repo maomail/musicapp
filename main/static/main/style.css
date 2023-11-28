@@ -24,6 +24,10 @@ body {
 	margin-bottom: 10px;
     color: rgba(0,0,0,.8);
 }
+a {
+    text-decoration: none;
+    color: inherit;
+}
 h1 {
 	font-size: 1.6em;
 	margin: 0;
@@ -177,4 +181,77 @@ a{
 	position: absolute;
 	bottom: 0;
 	scroll: scroll;
+}
+
+.song-app {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+.song-main {
+	position: relative;
+	height: 150px;
+    border-top: 10px solid rgba(255, 255, 255, 0.8);
+	width: 100%;
+}
+.song-main .cover {
+	height: 150px;
+	width: 50%;
+	object-fit: cover;
+	border-radius: 3px 0 0 3px;
+}
+.song-main .start-text {
+	position: absolute;
+	top: 15px;
+	right: 0;
+	text-transform: uppercase;
+	user-select: none;
+	font-weight: 500;
+	font-size: 1.5em;
+}
+audio {
+	display: block;
+	margin-left: -21px;
+	margin-top: -12px;
+	padding-left: 10px;
+}
+.audio-block {
+	position: absolute;
+	top: 60px;
+	right: 0;
+	height: 30px;
+	width: 30px;
+	overflow: hidden;
+	border-radius: 6px;
+}
+audio::-webkit-media-controls-panel {
+	background: #f1f3f4;
+}
+.song-title {
+	display: block;
+	font-size: .9em;
+}
+.song-desc {
+	text-align: center;
+    overflow: auto;
+    height: 170px;
+    padding-bottom: 60px;
+    font-size: .9em;
+    font-family: inherit;
+}
+.white-bg {
+	height: 150px;
+	width: 100%;
+	position: absolute;
+	background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.0984768907563025) 20%, rgba(255,255,255,0.10688025210084029) 28%, rgba(255,255,255,0.3029586834733894) 38%, rgba(255,255,255,0.5550595238095238) 40%, rgba(255,255,255,1) 49%, rgba(255,255,255,1) 100%);
+}
+
+.song-page {
+	background: white;
+	position: relative;
+	z-index: 1;
+	min-height: 100vh;
+}
+.arrow-btn {
+	display: none;
 }

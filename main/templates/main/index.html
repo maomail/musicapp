@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-        <header>=^-^= главная страница</header>
+        {% include "header.html" %}
 		<div class="app-container">
 			<div class="col-1">
 				<img src="{% static "/main/images/main-cover.jpg" %}" class="illustration">
@@ -61,7 +61,7 @@
                 max_index = {{ beautiful_songs_count }}
             }
             const id = getRandomInt(1,max_index)
-            window.location.href = '/song/'+id+'/'
+            window.location.href = '/song/'+type+'/'+id+'/'
         }
         </script>
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
