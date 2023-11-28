@@ -1,0 +1,69 @@
+<!doctype html>
+{% load static %}
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>musicapp</title>
+  <meta name="description" content="Супер-мега-музыка по настроению!">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static "/main/style.css" %}">
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+        <header>=^-^= главная страница</header>
+		<div class="app-container">
+			<div class="col-1">
+				<img src="{% static "/main/images/main-cover.jpg" %}" class="illustration">
+			</div>
+			<div class="col-2">
+				<div>
+					<div class="main-page">
+						<main class="main-app">
+							<i class="el-icon-headset headset"></i>
+							<h1>Получить музыку по настроению</h1>
+							<div class="buttons">
+								<div class="button-wrapper">
+                                    <button class="blue-hover-block" onclick="getRandomId('funny')">
+                                        Мне весело <img src="{% static "/main/images/icon.gif" %}">
+                                    </button>
+                                </div>
+								<div class="button-wrapper">
+                                    <button class="green-hover-block" onclick="getRandomId('sad')">
+                                    В задумчивости <img src="{% static "/main/images/icon.gif" %}"></button>
+                                </div>
+								<div class="button-wrapper">
+                                    <button class="brown-hover-block" onclick="getRandomId('beautiful')">
+                                        Хочу красивое <img src="{% static "/main/images/icon.gif" %}">
+                                    </button>
+                                </div>
+							</div>
+						</main>
+					</div>
+				</div>
+			</div>
+		</div>
+        <script>
+        const getRandomInt = (min, max) => {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        const getRandomId = (type) => {
+            let max_index
+            if(type=='funny'){
+                max_index = {{ funny_songs_count }}
+            } else if(type=='sad'){
+                max_index = {{ sad_songs_count }}
+            } else if(type=='beautiful'){
+                max_index = {{ beautiful_songs_count }}
+            }
+            const id = getRandomInt(1,max_index)
+            window.location.href = '/song/'+id+'/'
+        }
+        </script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</body>
+</html>

@@ -3,7 +3,6 @@ from . import views
 
 
 urlpatterns = [
-    # BEGIN (write your solution here)
-    path('', views.index),
-    # END
+    path('', views.IndexView.as_view()),
+    path('<int:id>/', views.IndexView.as_view()),
 ]

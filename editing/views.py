@@ -10,6 +10,6 @@ class IndexView(View):
     ]
 
     def get(self, request, *args, **kwargs):
-        return render(request, '/main/index.html')
+        return render(request, 'editing/index.html')
 
 
