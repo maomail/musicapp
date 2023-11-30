@@ -1,31 +1,176 @@
-.simple-input {
-    padding: 5px 20px;
-    border-radius: 3px;
-    margin-bottom: 25px;
+body {
+    height: auto;
+    overflow-y: auto;
+}
+form {
+    margin-top: 20px;
+}
+.settings-form p {
+    padding-bottom: 20px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid rgba(0,0,0,.05);
+}
+.settings-form .simple-input {
+    padding: 3px 8px;
+    margin-bottom: 10px;
     color: rgba(0,0,0,.8);
-    font-size: 1em;
+    font-size: .95em;
     font-weight: 400;
-	background: #ffffffa8;
 	transition: .4s;
+    border-radius: 3px;
 	display: block;
-	border: 1px solid rgba(0,0,0,.1);
 	font-family: inherit;
-	width: 250px;
+	width: 100%;
 	text-align: left;
 	cursor: pointer;
 	justify-content: space-between;
 	position: relative;
-    left: 50%;
-    transform: translate(-50%, 0);
 	user-select: none;
+    border: 1px solid rgba(0,0,0,.4);
 }
 .simple-input:focus {
 	border: 1px solid rgba(0,0,0,.8);
+    outline: 0;
 }
-label {
+.settings-form textarea {
+    padding: 3px 8px;
+    margin-bottom: 10px;
+    color: rgba(0,0,0,.8);
+    font-size: .95em;
+    font-weight: 400;
+	transition: .4s;
+	display: block;
+	font-family: inherit;
+	width: 100%;
+	text-align: left;
+	cursor: pointer;
+	justify-content: space-between;
+	position: relative;
+	user-select: none;
+    border-radius: 3px;
+    border: 1px solid rgba(0,0,0,.4);
+}
+.settings-form textarea:focus {
+	border: 1px solid rgba(0,0,0,.8);
+    outline: 0;
+}
+.settings-form input[type='file'] {
+    font-family: inherit;
+    cursor: pointer;
+}
+.settings-form input[type='file']::before {
+    height: 30px;
+    width: 100px;
+    font-family: inherit;
+    padding: 1px 8px;
+    background: white;
+    position: absolute;
+    content: "ᓚᘏᗢ загрузить";
+}
+.login-page h1 {
+    text-align: left;
+}
+.settings-form label {
 	display: block;
 	position: relative;
-    left: 50%;
-    transform: translate(-50%, 0);
 	user-select: none;
+    font-size: .9em;
+    margin-bottom: 8px;
+}
+.settings-form button {
+    left: 0;
+    transform: none;
+    display: inline-block;
+    width: auto;
+    padding: 4px 8px;
+    border-radius: 0;
+    font-size: .9em;
+}
+.settings-btn {
+    padding-left: 10px;
+    font-size: .95em;
+}
+.errorlist {
+    padding: 15px 0;
+    color: #F56C6C;
+    font-size: .85em;
+}
+.edit-page {
+    display: block;
+    padding: 30px 25%;
+}
+.edit-page button {
+    padding: 3px 8px;
+    font-size: .9em;
+    left: 0;
+    transform: none;
+    display: inline-block;
+    width: auto;
+    border-radius: 0;
+    float: left;
+    margin-right: 5px;
+    height: 28px;
+}
+.yellow-hover-block:hover {
+    background: #ffeda2;
+	border: 1px solid #ffeda2;
+}
+.yellow-hover-block:focus {
+	background: #ffeda2;
+}
+.song-list {
+    display: block;
+}
+.song-list li {
+    display: flex;
+}
+.song-list li h3 {
+    margin: 0 10px 0 0;
+    font-weight: 400;
+    font-size: .95em;
+}
+.song-list li a {
+    text-decoration: underline;
+}
+.edit-page .search-form {
+    display: flex;
+    margin: 0;
+}
+.edit-page .search-form .search-input {
+    margin-right: 5px;
+    height: 28px;
+    border: 1px solid rgba(0,0,0,.1);
+    padding-left: 5px;
+    font-family: inherit;
+}
+.edit-page .search-form button {
+    height: 28px;
+    border-radius: 0;
+}
+.settings-form select {
+    font-family: inherit;
+    font-size: .95em;
+}
+.edit-page .settings-form button {
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    margin: 20px 0 30px 0;
+    height: auto;
+}
+.delete-form button {
+    background: white;
+    font-family: inherit;
+    margin-bottom: 50px;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 3px;
+}
+.delete-form button:hover {
+    color: #42aef7;
+}
+
+@media (max-width: 800px) {
+    .edit-page{
+        padding: 20px;
+    }
 }
