@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Форма создания и редактирования песен</title>
+  <meta name="description" content="Супер-мега-музыка по настроению!">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static "/main/style.css" %}">
+    <link rel="stylesheet" href="{% static "/editing/style.css" %}">
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+{% include "header.html" %}
+<div class="edit-page">
+    <main>
+        <a href="{% url 'songlist' %}"><i class="el-icon-arrow-left"></i> Назад</a>
+        {% if form.subject.errors %}
+            <div class="errorlist">
+                <ul>
+                    {% for error in form.subject.errors %}
+                        <li><strong>{{ error|escape }}</strong></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        <form class="settings-form" action="" method="post" enctype='multipart/form-data'>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="blue-hover-block settings-btn" type="submit">Сохранить</button>
+        </form>
+        {% if song %}
+            <form class="delete-form" action="{% url 'delete' song.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit"><i class="el-icon-delete"></i> Удалить</button>
+            </form>
+        {% endif %}
+    </main>
+</div>
+</body>
+</html>

@@ -9,12 +9,12 @@ class Section(models.Model):
 
 class Song(models.Model):
     name = models.CharField(max_length=120)
-    text = models.CharField(max_length=500, default='', blank=True)
+    text = models.TextField(max_length=500, blank=True)
     page_cover = models.ImageField(upload_to='page-covers/', blank=True)
     song_cover = models.ImageField(upload_to='song-covers/', blank=True)
     notes = models.ImageField(upload_to='notes', blank=True)
     section = models.ManyToManyField(Section)
-    audio_file = models.FileField(upload_to='audio/')
+    audio_file = models.FileField(upload_to='audio/', blank=True)
 
     def __str__(self):
         return self.name

@@ -4,19 +4,16 @@ from .models import Song, Section
 from django.views.decorators.http import require_http_methods
 from django.http import Http404
 
-songs = [
-    {'name': 'Браво - Нет предела', 'text': 'Hello world!', 'section': 'funny'},
-    {'name': 'pyrokinesis - Богиня мечей', 'text': 'Hello world!', 'section': 'sad'},
-    {'name': 'Sirius Eye', 'text': 'Hello world!', 'section': 'beautiful'},
-]
-
 class IndexView(View):
 
     def get(self, request, *args, **kwargs):
+        funny_songs_count = Song.objects.filter(section__name='funny').count()
+        sad_songs_count = Song.objects.filter(section__name='sad').count()
+        beautiful_songs_count = Song.objects.filter(section__name='beautiful').count()
         context = {
-            'funny_songs_count': 1,
-            'sad_songs_count': 1,
-            'beautiful_songs_count': 1,
+            'funny_songs_count': funny_songs_count,
+            'sad_songs_count': sad_songs_count,
+            'beautiful_songs_count': beautiful_songs_count,
         }
         return render(request, 'main/index.html', context=context)
 
@@ -27,8 +24,12 @@ class SongView(View):
         try:
             song = songs[kwargs['id']-1]
         except IndexError:
-            return redirect('main')
+            return redirect('songlist')
         return render(request, 'main/song.html', context={'song': song})
 
+class NotFoundView(View):
+
+    def get(self, request, *args, **kwargs):
+        return render(request, 'main/not-found.html')
 
 

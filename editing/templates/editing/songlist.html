@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Список песен</title>
+  <meta name="description" content="Супер-мега-музыка по настроению!">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static "/main/style.css" %}">
+    <link rel="stylesheet" href="{% static "/editing/style.css" %}">
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+{% include "header.html" %}
+<div class="edit-page">
+    <aside>
+        <a href="create">
+            <button class="yellow-hover-block"><i class="el-icon-plus"></i> Создать</button>
+        </a>
+    </aside>
+    <main>
+        <form class="search-form" action="{% url 'songlist' %}" method="get">
+            <input class="search-input" type="search" name="q" value="{{ query }}" placeholder="Поиск по названию">
+            <button class="blue-hover-block" type="submit"><i class="el-icon-search"></i></button>
+        </form>
+        <ul class="song-list">
+            {% for song in songs %}
+            <li>
+                <h3>{{ song.name }}</h3>
+                <a href="{% url 'edit' song.id %}">edit</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </main>
+</div>
+</body>
+</html>

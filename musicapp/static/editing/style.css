@@ -1,0 +1,31 @@
+.simple-input {
+    padding: 5px 20px;
+    border-radius: 3px;
+    margin-bottom: 25px;
+    color: rgba(0,0,0,.8);
+    font-size: 1em;
+    font-weight: 400;
+	background: #ffffffa8;
+	transition: .4s;
+	display: block;
+	border: 1px solid rgba(0,0,0,.1);
+	font-family: inherit;
+	width: 250px;
+	text-align: left;
+	cursor: pointer;
+	justify-content: space-between;
+	position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+	user-select: none;
+}
+.simple-input:focus {
+	border: 1px solid rgba(0,0,0,.8);
+}
+label {
+	display: block;
+	position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+	user-select: none;
+}
