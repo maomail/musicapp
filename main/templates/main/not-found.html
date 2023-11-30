@@ -1,10 +1,19 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Страница не найдена</title>
+  <meta name="description" content="Страница не найдена">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static "/main/style.css" %}">
 </head>
 <body>
-
+    <main class="not-found-page">
+        <h1 class="not-found-page-text">Страница не найдена!</h1>
+        <a href="{% url 'main' %}">На главную</a>
+    </main>
 </body>
 </html>

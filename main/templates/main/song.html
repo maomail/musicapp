@@ -21,7 +21,10 @@
 			<div class="col-2">
 					<div class="main-page song-page">
 						<main class="main-app">
-							<h1>{{ song.name }}</h1>
+                            <div class="new-song-msg">
+                                <span class="hide" id="new_song_msg"><i class="el-icon-star-off"></i> попалась впервые</span>
+							</div>
+                            <h1>{{ song.name }}</h1>
 							<pre class="song-desc">{{ song.text }}</pre>
 							<div class="song-app">
 								<div class="song-main">
@@ -38,6 +41,11 @@
 			</div>
 		</div>
     <script>
+        let is_checked = localStorage.getItem("{{ song.name }}-checked")
+        if(!is_checked) {
+            document.querySelector("#new_song_msg").classList.remove('hide')
+            localStorage.setItem("{{ song.name }}-checked", "True")
+        }
         const audio_player = document.getElementById('audio_player')
         audio_player.autoplay = true
     </script>

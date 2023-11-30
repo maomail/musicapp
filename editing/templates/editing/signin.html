@@ -32,7 +32,7 @@
                                 </ul>
                               </div>
                               {% endif %}
-                              <form action="{% url 'signin' %}" method="post">
+                              <form class="settings-form" action="{% url 'signin' %}" method="post">
                                     {% csrf_token %}
                                     {{ form }}
                                   <button class="blue-hover-block settings-btn" type="submit">Войти</button>

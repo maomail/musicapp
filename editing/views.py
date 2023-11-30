@@ -22,15 +22,21 @@ class SighinView(View):
 class SongListView(View):
 
     def get(self, request, *args, **kwargs):
-        query = request.GET.get('q', '')
-        songs = Song.objects.filter(Q(name__icontains=query))
-        return render(request, 'editing/songlist.html', context={'songs': songs})
+        if request.user.is_authenticated == True:
+            query = request.GET.get('q', '')
+            songs = Song.objects.filter(Q(name__icontains=query))
+            return render(request, 'editing/songlist.html', context={'songs': songs})
+        else:
+            return redirect('signin')
 
 class CreateView(View):
 
     def get(self, request, *args, **kwargs):
-        form = SongForm()
-        return render(request, 'editing/editing.html', {'form': form})
+        if request.user.is_authenticated == True:
+            form = SongForm()
+            return render(request, 'editing/editing.html', {'form': form})
+        else:
+            return redirect('signin')
 
     def post(self, request, *args, **kwargs):
         form = SongForm(request.POST, request.FILES)
@@ -42,9 +48,12 @@ class CreateView(View):
 
 class EditView(View):
     def get(self, request, *args, **kwargs):
-        song = get_object_or_404(Song.objects.all(), id=kwargs['id'])
-        form = SongForm(instance=song)
-        return render(request, 'editing/editing.html', {'form': form, 'song': song})
+        if request.user.is_authenticated == True:
+            song = get_object_or_404(Song.objects.all(), id=kwargs['id'])
+            form = SongForm(instance=song)
+            return render(request, 'editing/editing.html', {'form': form, 'song': song})
+        else:
+            return redirect('signin')
 
     def post(self, request, *args, **kwargs):
         song = get_object_or_404(Song.objects.all(), id=kwargs['id'])
