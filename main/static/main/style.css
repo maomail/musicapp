@@ -384,4 +384,7 @@ audio::-webkit-media-controls-panel {
 	.key-form {
 		width: 65%;
 	}
+	.notes-page img {
+		width: 100%;
+	}
 }
