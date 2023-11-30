@@ -168,3 +168,9 @@ form {
 .delete-form button:hover {
     color: #42aef7;
 }
+
+@media (max-width: 800px) {
+    .edit-page{
+        padding: 20px;
+    }
+}

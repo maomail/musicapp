@@ -15,14 +15,23 @@
 <body>
         {% include "header.html" %}
 		<div class="app-container">
-			<div class="col-1">
+			<div class="col-1" id="bg">
 				<img src="/media/{{ song.page_cover }}" class="illustration">
 			</div>
 			<div class="col-2">
 					<div class="main-page song-page">
 						<main class="main-app">
+                            {% if song.notes %}
+                                <div class="notes-page hide" id="notes_page">
+                                    <i class="el-icon-arrow-up hide-notes-page-btn" onclick="hide_notes()"></i>
+                                    <img src="/media/{{ song.notes }}"/>
+                                </div>
+                            {% endif %}
                             <div class="new-song-msg">
                                 <span class="hide" id="new_song_msg"><i class="el-icon-star-off"></i> попалась впервые</span>
+                                {% if song.notes %}
+                                    <span class="pointer" onclick="open_notes();"><i class="el-icon-sugar"></i> ноты</span>
+                                {% endif %}
 							</div>
                             <h1>{{ song.name }}</h1>
 							<pre class="song-desc">{{ song.text }}</pre>
@@ -39,6 +48,8 @@
 						</main>
 					</div>
 			</div>
+			<div class="arrow-btn" id="bg_btn" onclick="setBg();"><i class="el-icon-arrow-down"></i></div>
+			<div class="arrow-btn hide" id="audio_btn" onclick="setAudio();"><i class="el-icon-arrow-up"></i></div>
 		</div>
     <script>
         let is_checked = localStorage.getItem("{{ song.name }}-checked")
@@ -48,7 +59,30 @@
         }
         const audio_player = document.getElementById('audio_player')
         audio_player.autoplay = true
-    </script>
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+        const setBg = () => {
+            const bgBtn = document.getElementById('bg_btn')
+            const audioBtn = document.getElementById('audio_btn')
+            const bg = document.getElementById('bg')
+            bgBtn.classList.add('hide')
+            audioBtn.classList.remove('hide')
+            bg.classList.add('up-bg')
+        }
+        const setAudio = () => {
+            const bgBtn = document.getElementById('bg_btn')
+            const audioBtn = document.getElementById('audio_btn')
+            const bg = document.getElementById('bg')
+            bgBtn.classList.remove('hide')
+            audioBtn.classList.add('hide')
+            bg.classList.remove('up-bg')
+        }
+        const open_notes = () => {
+            document.getElementById('notes_page').classList.remove('hide')
+        }
+        const hide_notes = () => {
+            document.getElementById('notes_page').classList.add('hide')
+        }
+        </script>
+        <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </body>
 </html>
