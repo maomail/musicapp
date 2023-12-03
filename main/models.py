@@ -1,20 +1,34 @@
 from django.db import models
 from PIL import Image
 
-class Section(models.Model):
+class Playlist(models.Model):
     name = models.CharField(max_length=30)
+    icon = models.ImageField(upload_to='playlist-icon/', blank=True)
 
     def __str__(self):
         return self.name
 
 class Song(models.Model):
+    B = 'btf'
+    F = 'fun'
+    S = 'sad'
     name = models.CharField(max_length=120)
     text = models.TextField(max_length=500, blank=True)
     page_cover = models.ImageField(upload_to='page-covers/', blank=True)
     song_cover = models.ImageField(upload_to='song-covers/', blank=True)
     notes = models.ImageField(upload_to='notes', blank=True)
-    section = models.ManyToManyField(Section)
+    playlist = models.ManyToManyField(Playlist)
     audio_file = models.FileField(upload_to='audio/', blank=True)
+    TYPES_CHOICES = [
+        (B, 'Красивое'),
+        (F, 'Весело'),
+        (S, 'Грустно'),
+    ]
+    section = models.CharField(
+        max_length=3,
+        choices=TYPES_CHOICES,
+        default=F
+    )
 
     def __str__(self):
         return self.name

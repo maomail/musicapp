@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from .forms import UserLoginForm, SongForm
+from .forms import UserLoginForm, SongForm, PlaylistForm
 from django.contrib.auth import login
-from main.models import Song, Section
+from main.models import Song, Playlist
 from django.db.models import Q
 
 class SighinView(View):
@@ -25,7 +25,8 @@ class SongListView(View):
         if request.user.is_authenticated == True:
             query = request.GET.get('q', '')
             songs = Song.objects.filter(Q(name__icontains=query))
-            return render(request, 'editing/songlist.html', context={'songs': songs})
+            playlists = Playlist.objects.all()
+            return render(request, 'editing/songlist.html', context={'songs': songs,'playlists': playlists})
         else:
             return redirect('signin')
 
@@ -45,6 +46,23 @@ class CreateView(View):
             return redirect('main')
 
         return render(request, 'editing/editing.html', {'form': form})
+
+class CreatePlaylistView(View):
+
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated == True:
+            form = PlaylistForm()
+            return render(request, 'editing/playlist-editing.html', {'form': form})
+        else:
+            return redirect('signin')
+
+    def post(self, request, *args, **kwargs):
+        form = PlaylistForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('main')
+
+        return render(request, 'editing/playlist-editing.html', {'form': form})
 
 class EditView(View):
     def get(self, request, *args, **kwargs):

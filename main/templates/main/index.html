@@ -26,22 +26,25 @@
 							<i class="el-icon-headset headset"></i>
 							<h1>Получить музыку по настроению</h1>
 							<div class="buttons">
-								<div class="button-wrapper">
-                                    <button class="blue-hover-block" onclick="getRandomId('funny')">
-                                        Мне весело <img src="{% static "/main/images/icon.gif" %}">
-                                    </button>
-                                </div>
-								<div class="button-wrapper">
-                                    <button class="green-hover-block" onclick="getRandomId('sad')">
+                                <button class="blue-hover-block mood-button" onclick="getRandomId('fun')">
+                                    Мне весело <img src="{% static "/main/images/icon.gif" %}">
+                                </button>
+                                <button class="green-hover-block mood-button" onclick="getRandomId('sad')">
                                     В задумчивости <img src="{% static "/main/images/icon.gif" %}"></button>
-                                </div>
-								<div class="button-wrapper">
-                                    <button class="brown-hover-block" onclick="getRandomId('beautiful')">
-                                        Хочу красивое <img src="{% static "/main/images/icon.gif" %}">
-                                    </button>
-                                </div>
+                                <button class="brown-hover-block mood-button" onclick="getRandomId('btf')">
+                                    Хочу красивое <img src="{% static "/main/images/icon.gif" %}">
+                                </button>
 							</div>
-                            <a href="{% url 'songlist' %}"><i class="el-icon-edit"></i> настроить</a>
+                        <h3>Плейлисты</h3>
+                            <ul class="playlist-list">
+                                {% for playlist in playlists %}
+                                <li>
+                                    <a href="/playlist-song/{{ playlist.id }}/">
+                                        <img src="/media/{{ playlist.icon }}"/>
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
 						</main>
 					</div>
 				</div>
@@ -55,11 +58,11 @@
         }
         const getRandomId = (type) => {
             let max_index
-            if(type=='funny'){
+            if(type=='fun'){
                 max_index = {{ funny_songs_count }}
             } else if(type=='sad'){
                 max_index = {{ sad_songs_count }}
-            } else if(type=='beautiful'){
+            } else if(type=='btf'){
                 max_index = {{ beautiful_songs_count }}
             }
             const id = getRandomInt(1,max_index)
