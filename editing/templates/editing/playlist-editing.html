@@ -31,15 +31,23 @@
         <form class="settings-form" action="" method="post" enctype='multipart/form-data'>
             {% csrf_token %}
             {{ form.as_p }}
-            <button class="green-hover-block settings-btn" type="submit">Сохранить</button>
+            <button class="green-hover-block settings-btn" type="submit" id="send-form-btn">Сохранить</button>
         </form>
-        {% if song %}
-            <form class="delete-form" action="{% url 'delete' song.id %}" method="post">
+        {% if playlist %}
+            <form class="delete-form" action="{% url 'playlist-delete' playlist.id %}" method="post">
                 {% csrf_token %}
                 <button type="submit"><i class="el-icon-delete"></i> Удалить</button>
             </form>
         {% endif %}
     </main>
 </div>
+<script>
+    document.querySelector('#send-form-btn').addEventListener('click', (e) => {
+        const form = document.querySelector('form')
+        if (form.hasAttribute('data-submitting')) e.preventDefault()
+        form.setAttribute('data-submitting', '')
+        setTimeout(function () {form.removeAttribute('data-submitting')}, 3000)
+    })
+</script>
 </body>
 </html>

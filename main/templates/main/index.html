@@ -26,14 +26,14 @@
 							<i class="el-icon-headset headset"></i>
 							<h1>Получить музыку по настроению</h1>
 							<div class="buttons">
-                                <button class="blue-hover-block mood-button" onclick="getRandomId('fun')">
+                                <a href="{% url 'song' 'fun' %}" class="blue-hover-block mood-button">
                                     Мне весело <img src="{% static "/main/images/icon.gif" %}">
-                                </button>
-                                <button class="green-hover-block mood-button" onclick="getRandomId('sad')">
-                                    В задумчивости <img src="{% static "/main/images/icon.gif" %}"></button>
-                                <button class="brown-hover-block mood-button" onclick="getRandomId('btf')">
+                                </a>
+                                <a href="{% url 'song' 'sad' %}" class="green-hover-block mood-button">
+                                    В задумчивости <img src="{% static "/main/images/icon.gif" %}"></a>
+                                <a href="{% url 'song' 'bea' %}" class="brown-hover-block mood-button">
                                     Хочу красивое <img src="{% static "/main/images/icon.gif" %}">
-                                </button>
+                                </a>
 							</div>
                         <h3>Плейлисты</h3>
                             <ul class="playlist-list">
@@ -50,25 +50,5 @@
 				</div>
 			</div>
 		</div>
-        <script>
-        const getRandomInt = (min, max) => {
-            min = Math.ceil(min);
-            max = Math.floor(max);
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
-        const getRandomId = (type) => {
-            let max_index
-            if(type=='fun'){
-                max_index = {{ funny_songs_count }}
-            } else if(type=='sad'){
-                max_index = {{ sad_songs_count }}
-            } else if(type=='btf'){
-                max_index = {{ beautiful_songs_count }}
-            }
-            const id = getRandomInt(1,max_index)
-            window.location.href = '/song/'+type+'/'+id+'/'
-        }
-        </script>
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </body>
 </html>

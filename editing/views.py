@@ -64,6 +64,29 @@ class CreatePlaylistView(View):
 
         return render(request, 'editing/playlist-editing.html', {'form': form})
 
+class PlaylistEditView(View):
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated == True:
+            playlist = get_object_or_404(Playlist.objects.all(), id=kwargs['id'])
+            form = PlaylistForm(instance=playlist)
+            return render(request, 'editing/playlist-editing.html', {'form': form, 'playlist': playlist})
+        else:
+            return redirect('signin')
+
+    def post(self, request, *args, **kwargs):
+        playlist = get_object_or_404(Playlist.objects.all(), id=kwargs['id'])
+        form = PlaylistForm(request.POST, request.FILES, instance=playlist)
+        if form.is_valid():
+            form.save()
+            return redirect('main')
+        return render(request, 'editing/editing.html', {'form': form, 'playlist': playlist})
+
+class PlaylistDeleteView(View):
+    def post(self, request, *args, **kwargs):
+        playlist = get_object_or_404(Playlist.objects.all(), id=kwargs['id'])
+        playlist.delete()
+        return redirect('songlist')
+
 class EditView(View):
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated == True:

@@ -31,14 +31,14 @@
     </aside>
     <main>
     <h3>Плейлисты</h3>
-
-                            <ul class="playlist-list">
-                                {% for playlist in playlists %}
-                                <li>
-                                        <img src="/media/{{ playlist.icon }}"/>
-                                </li>
-                                {% endfor %}
-                            </ul>
+        <ul class="playlist-list">
+            {% for playlist in playlists %}
+                <li>
+                    <img src="/media/{{ playlist.icon }}"/>
+                    <a href='{% url "playlist-edit" playlist.id %}'><i class="el-icon-edit"></i></a>
+                </li>
+            {% endfor %}
+        </ul>
     <h3>Треки</h3>
         <ul class="song-list">
             {% for song in songs %}

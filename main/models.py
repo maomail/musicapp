@@ -9,7 +9,7 @@ class Playlist(models.Model):
         return self.name
 
 class Song(models.Model):
-    B = 'btf'
+    B = 'bea'
     F = 'fun'
     S = 'sad'
     name = models.CharField(max_length=120)
@@ -17,7 +17,7 @@ class Song(models.Model):
     page_cover = models.ImageField(upload_to='page-covers/', blank=True)
     song_cover = models.ImageField(upload_to='song-covers/', blank=True)
     notes = models.ImageField(upload_to='notes', blank=True)
-    playlist = models.ManyToManyField(Playlist)
+    playlist = models.ManyToManyField(Playlist, blank=True)
     audio_file = models.FileField(upload_to='audio/', blank=True)
     TYPES_CHOICES = [
         (B, 'Красивое'),
