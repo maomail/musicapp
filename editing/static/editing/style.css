@@ -194,6 +194,14 @@ form {
 
 @media (max-width: 800px) {
     .edit-page{
-        padding: 20px;
+        padding: 15px;
+    }
+    aside {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: start;
+    }
+    aside a {
+        margin-bottom: 10px;
     }
 }

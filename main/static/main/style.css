@@ -113,6 +113,7 @@ header a {
 .buttons {
     margin: 50px 10px;
     display: flex;
+	flex-wrap: wrap;
     justify-content: space-between;
 }
 button {
@@ -350,6 +351,9 @@ audio::-webkit-media-controls-panel {
 	body {
 		height: auto;
 	}
+	header {
+		padding: 5px 15px;
+	}
 	.app-container {
 		display: block;
 		height: auto;
@@ -421,5 +425,15 @@ audio::-webkit-media-controls-panel {
 	}
 	.notes-page img {
 		width: 100%;
+	}
+	.buttons {
+		justify-content: center;
+	}
+	.mood-button {
+		width: 48%;
+		margin-bottom: 15px;
+	}
+	.buttons .mood-button:first-child {
+		margin-right: 4%;
 	}
 }
