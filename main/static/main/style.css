@@ -166,6 +166,15 @@ button:hover {
 	outline: none;
 	color: white;
 }
+.mood-button+.green-hover-block {
+	border: 2px solid #b6e66e;
+}
+.buttons .blue-hover-block {
+	border: 2px solid #42aef7;
+}
+.mood-button+.brown-hover-block {
+	border: 2px solid #dbc1a8;
+}
 .green-hover-block:hover {
 	background: #b6e66e;
 	color: white;
