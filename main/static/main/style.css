@@ -381,9 +381,10 @@ audio::-webkit-media-controls-panel {
 	}
 	.main-app {
 		width: 100%;
-		padding: 15px 0 10px 0;
+		padding: 15px 10px;
 		position: relative;
 		height: auto;
+		background: rgba(255, 255, 255, 0.8);
 	}
 	.main-page {
 		padding: 10px 8% 10px 0;

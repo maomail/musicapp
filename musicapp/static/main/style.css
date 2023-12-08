@@ -15,6 +15,9 @@ body {
 .hide {
 	display: none!important;
 }
+.align-center {
+	text-align: center;
+}
 .pointer {
 	cursor: pointer;
 }
@@ -30,6 +33,17 @@ body {
 a {
     text-decoration: none;
     color: inherit;
+}
+a:focus {
+	outline: 0;
+	border: 0;
+}
+.text-btn {
+	color: #909399;
+	font-size: .9em;
+}
+.text-btn:hover {
+	color: #606266;
 }
 h1 {
 	font-size: 1.6em;
@@ -80,15 +94,16 @@ li .line {
 	border-radius: 3px;
 }
 header {
-	background: transparent;
-	border-bottom: 1px solid rgba(0,0,0,.2);
+	background: #e5e7e8;
     min-height: 30px;
     padding: 5px 60px;
     z-index: 19;
 	color: #2f2f2f;
     box-sizing: border-box;
-    text-align: center;
-	cursor: pointer;
+}
+header a {
+    margin-right: 15px;
+    font-size: .9em;
 }
 .main-page {
 	padding: 5px 30px;
@@ -96,82 +111,114 @@ header {
     width: 100%;
 }
 .buttons {
-	margin: 50px 10px;
-}
-.button-wrapper {
-	display: flex;
-	margin-bottom: 5px;
-}
-.button-wrapper i {
-	display: block;
-	margin: 5px 10px;
-	font-size: 1.1em;
-    color: rgba(0,0,0,.8);
+    margin: 50px 10px;
+    display: flex;
+	flex-wrap: wrap;
+    justify-content: space-between;
 }
 button {
-    padding: 5px 20px;
+    border: 1px solid #dcdfe6;
+    border-radius: 3px;
+    padding: 8px 15px;
+    background: transparent;
+    font-size: .9em;
+    color: #606266;
+    text-align: center;
+    transition: .1s;
+    font-family: inherit;
+    cursor: pointer;
+}
+button:hover {
+    color: #409eff;
+    border-color: #c6e2ff;
+    background-color: #ecf5ff;
+}
+.mood-button {
+    padding: 6px 8px;
     border-radius: 3px;
     margin-bottom: 25px;
     color: rgba(0,0,0,.8);
-    font-size: 1em;
+    font-size: .9em;
     font-weight: 400;
-	background: #ffffffa8;
-	transition: .4s;
-	border: 1px solid rgba(0,0,0,.1);
-	font-family: inherit;
-	width: 250px;
-	text-align: left;
-	cursor: pointer;
-	display: flex;
-	justify-content: space-between;
-	position: relative;
-    left: 50%;
-    transform: translate(-50%, 0);
-	user-select: none;
+    background: #ffffffa8;
+    transition: .4s;
+    border: 1px solid rgba(0,0,0,.1);
+    font-family: inherit;
+    width: 135px;
+    text-align: left;
+    cursor: pointer;
+    position: relative;
 }
-button:hover {
+.mood-button:hover {
 	color: white;
 }
-button img {
+.mood-button img {
 	height: 24px;
-	vertical-align: middle;
-	margin-top: -5px;
-	margin-left: 8px;
-	display: none;
+    display: none;
+    position: absolute;
+    bottom: -2px;
+    right: -3px;
 }
-button:hover img {
+.mood-button:hover img {
 	display: inline;
 }
-button:focus{
+.mood-button:focus{
 	outline: none;
 	color: white;
 }
+.mood-button+.green-hover-block {
+	border: 2px solid #b6e66e;
+}
+.buttons .blue-hover-block {
+	border: 2px solid #42aef7;
+}
+.mood-button+.brown-hover-block {
+	border: 2px solid #dbc1a8;
+}
 .green-hover-block:hover {
 	background: #b6e66e;
+	color: white;
 	border: 1px solid #b6e66e;
 }
 .brown-hover-block:hover {
 	background: #dbc1a8;
 	border: 1px solid #dbc1a8;
+	color: white;
 }
 .blue-hover-block:hover {
     background: #42aef7;
 	border: 1px solid #42aef7;
+	color: white;
 }
 .green-hover-block:focus {
 	background: #b6e66e;
+	color: white;
 }
 .brown-hover-block:focus {
 	background: #dbc1a8;
+	color: white;
 }
 .blue-hover-block:focus {
     background: #42aef7;
+	color: white;
 }
 .btns {
     display: flex;
 }
-a{
+a {
     text-decoration: none;
+}
+.playlist-list {
+    display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+.playlist-list li {
+    margin-right: 15px;
+}
+.playlist-list li img {
+    height: 50px;
+    width: auto;
 }
 .main-app {
 	border-radius: 3px;
@@ -300,6 +347,7 @@ audio::-webkit-media-controls-panel {
 	max-height: 250px;
 	width: 30%;
 	margin-top: 15vh;
+	object-fit: cover;
 }
 .hide-notes-page-btn {
 	font-size: 2.1em;
@@ -311,6 +359,9 @@ audio::-webkit-media-controls-panel {
 @media (max-width: 800px) {
 	body {
 		height: auto;
+	}
+	header {
+		padding: 5px 15px;
 	}
 	.app-container {
 		display: block;
@@ -330,9 +381,10 @@ audio::-webkit-media-controls-panel {
 	}
 	.main-app {
 		width: 100%;
-		padding: 15px 0 10px 0;
+		padding: 15px 10px;
 		position: relative;
 		height: auto;
+		background: rgba(255, 255, 255, 0.8);
 	}
 	.main-page {
 		padding: 10px 8% 10px 0;
@@ -380,5 +432,18 @@ audio::-webkit-media-controls-panel {
 	}
 	.key-form {
 		width: 65%;
+	}
+	.notes-page img {
+		width: 100%;
+	}
+	.buttons {
+		justify-content: center;
+	}
+	.mood-button {
+		width: 48%;
+		margin-bottom: 15px;
+	}
+	.buttons .mood-button:first-child {
+		margin-right: 4%;
 	}
 }
