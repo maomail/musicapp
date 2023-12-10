@@ -13,7 +13,7 @@ class Song(models.Model):
     F = 'fun'
     S = 'sad'
     name = models.CharField(max_length=120)
-    text = models.TextField(max_length=500, blank=True)
+    text = models.TextField(max_length=1500, blank=True)
     page_cover = models.ImageField(upload_to='page-covers/', blank=True)
     song_cover = models.ImageField(upload_to='song-covers/', blank=True)
     notes = models.ImageField(upload_to='notes', blank=True)
